@@ -1,15 +1,20 @@
 library(shiny)
+library(ggplot2)
 
 ui <- fluidPage(
-  sliderInput("x", label = "If x is", min = 1, max = 50, value = 30),
-  "then x times 5 is",
-  textOutput("product")
+  sliderInput(
+  "howmany", 
+  "How many?",
+  min = 0,
+  max = 100, 
+  step = 5,
+  value = 15,
+  animate = TRUE
+  )
 )
 
 server <- function(input, output, session) {
-  output$product <- renderText({ 
-    input$x * 5
-  })
+  
 }
 
 shinyApp(ui, server)
